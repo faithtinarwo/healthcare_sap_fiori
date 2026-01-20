@@ -1,0 +1,31 @@
+/* ---------- TILES ---------- */
+.tileCard {
+  transition: transform .2s, box-shadow .2s;
+  box-shadow: 0 0.125rem 0.5rem rgba(0,0,0,.1);
+}
+.tileCard:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 0.5rem 1rem rgba(0,0,0,.15);
+}
+
+/* ---------- TABLE ---------- */
+#apptTable .sapMListTblRow:hover {
+  background-color: #f5f6fa;
+  transition: background-color .2s;
+}
+
+/* ---------- DEPT LIST ---------- */
+.deptList .deptItem {
+  padding: .75rem 1rem;
+  border-radius: .5rem;
+  margin-bottom: .5rem;
+  background: linear-gradient(135deg, #fff 0%, #f5f6fa 100%);
+  box-shadow: 0 0.125rem 0.25rem rgba(0,0,0,.08);
+  transition: box-shadow .2s;
+}
+.deptList .deptItem:hover {
+  box-shadow: 0 0.25rem 0.75rem rgba(0,0,0,.12);
+}
+.sapMIBar.deptList {
+  border: none;
+}

@@ -1,0 +1,111 @@
+<mvc:View
+    controllerName="hc.dashboard.view.App"
+    xmlns:mvc="sap.ui.core.mvc"
+    xmlns="sap.m"
+    xmlns:l="sap.ui.layout">
+  <App id="app">
+    <Page
+        title="{i18n>appTitle}"
+        class="sapUiResponsiveContentPadding"
+        backgroundDesign="Transparent">
+      <content>
+        <!-- 1️⃣ STAT-CARDS -->
+        <HBox justifyContent="SpaceAround" wrap="Wrap">
+          <GenericTile header="Admitted" press="onTilePress" class="tileCard sapUiTinyMargin">
+            <TileContent footer="Total">
+              <l:VerticalLayout>
+                <NumericContent value="{stats>/admitted}" valueColor="Error"/>
+                <ProgressIndicator percentValue="75" height="0.5rem" class="sapUiTinyMarginTop"/>
+              </l:VerticalLayout>
+            </TileContent>
+          </GenericTile>
+
+          <GenericTile header="Discharged Today" press="onTilePress" class="tileCard sapUiTinyMargin">
+            <TileContent footer="Count">
+              <l:VerticalLayout>
+                <NumericContent value="{stats>/discharged}" valueColor="Good"/>
+                <ProgressIndicator percentValue="60" height="0.5rem" class="sapUiTinyMarginTop"/>
+              </l:VerticalLayout>
+            </TileContent>
+          </GenericTile>
+
+          <GenericTile header="Critical" press="onTilePress" class="tileCard sapUiTinyMargin">
+            <TileContent footer="Cases">
+              <l:VerticalLayout>
+                <NumericContent value="{stats>/critical}" valueColor="Critical"/>
+                <ProgressIndicator percentValue="40" height="0.5rem" class="sapUiTinyMarginTop"/>
+              </l:VerticalLayout>
+            </TileContent>
+          </GenericTile>
+
+          <!-- 👨‍⚕️ DOCTOR ON DUTY -->
+          <GenericTile header="Doctor on Duty" subheader="{duty>0/name}" press="onCallDoctor" class="tileCard sapUiTinyMargin">
+            <TileContent footer="Tap to call">
+              <NumericContent icon="sap-icon://phone" value=" "/>
+            </TileContent>
+          </GenericTile>
+        </HBox>
+
+        <!-- 2️⃣ APPOINTMENTS TABLE -->
+        <Toolbar class="sapUiMediumMarginTop">
+          <Title text="Today’s Appointments"/>
+          <ToolbarSpacer/>
+          <Switch state="{app>/dark}" change="onDarkToggle" tooltip="Dark mode"/>
+          <Button icon="sap-icon://download" tooltip="Export CSV" press="onExport"/>
+          <Button icon="sap-icon://add" tooltip="Add appointment" press="onAddAppointment"/>
+        </Toolbar>
+        <Table
+            id="apptTable"
+            items="{appointments>/}"
+            noDataText="No appointments"
+            mode="SingleSelect"
+            selectionChange="onAppointmentSelect"
+            alternateRowColors="true"
+            class="sapUiMediumMarginBottom">
+          <columns>
+            <Column><Text text="Patient"/></Column>
+            <Column><Text text="Doctor"/></Column>
+            <Column><Text text="Date / Time"/></Column>
+          </columns>
+          <items>
+            <ColumnListItem type="Navigation" press="onAppointmentSelect">
+              <cells>
+                <Text text="{appointments>patient}"/>
+                <Text text="{appointments>doctor}"/>
+                <Text text="{appointments>date}"/>
+              </cells>
+            </ColumnListItem>
+          </items>
+        </Table>
+
+        <!-- 3️⃣ DEPARTMENT GRADIENT BARS -->
+        <Toolbar>
+          <Title text="Patients per Department"/>
+        </Toolbar>
+        <List
+            id="deptList"
+            items="{deptData>/}"
+            selectionChange="onDeptSelect"
+            class="deptList">
+          <CustomListItem type="Navigation" press="onDeptSelect">
+            <HBox alignItems="Center" class="deptItem">
+              <VBox width="60%">
+                <Title text="{deptData>dept}" level="H4"/>
+                <ProgressIndicator
+                    percentValue="{=${deptData>count} * 10}"
+                    displayValue="{deptData>count}"
+                    state="Success"
+                    height="0.75rem"/>
+              </VBox>
+              <ToolbarSpacer/>
+              <ObjectStatus
+                  text="{deptData>count}"
+                  state="Success"
+                  title="Patients"/>
+            </HBox>
+          </CustomListItem>
+        </List>
+      </content>
+    </Page>
+  </App>
+</mvc:View>

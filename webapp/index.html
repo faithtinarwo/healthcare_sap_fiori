@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>Healthcare Dashboard</title>
+  <link rel="stylesheet" href="css/style.css">
+  <script>
+    // suppress info-level logs in browser console
+    window["sap-ui-logLevel"] = "WARNING";
+  </script>
+  <script id="sap-ui-bootstrap"
+          src="https://sdk.openui5.org/resources/sap-ui-core.js"
+          data-sap-ui-theme="sap_fiori_3"
+          data-sap-ui-compatversion="edge"
+          data-sap-ui-async="true"
+          data-sap-ui-oninit="module:sap/ui/core/ComponentSupport"
+		  data-sap-ui-libs="sap.m,sap.ui.core"
+          data-sap-ui-resourceroots='{"hc.dashboard": "./"}'>
+  </script>
+</head>
+<body class="sapUiBody">
+  <div data-sap-ui-component data-name="hc.dashboard" data-height="100%"></div>
+</body>
+</html>
