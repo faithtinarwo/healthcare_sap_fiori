@@ -5,6 +5,8 @@ This project is my starting point in learning **SAP Fiori** and **SAPUI5** devel
 It is a simple Healthcare Dashboard application built with SAPUI5, following Fiori design principles.  
 The goal is to practice building enterprise-style apps, connecting my UX background with SAP technologies.
 
+In a healthcare environment, seconds matter. This dashboard follows the Fiori 'Overview' principle, utilizing high-level KPI Tiles to provide a summary of patient status. I prioritized 'Visual Scannability' by using a combination of icons and value states; this allows medical staff to triage patients at a glance based on color-coded health indicators rather than digging through clinical notes immediately.
+
 ## Features
 - Built with **SAPUI5** (OpenUI5 runtime)
 - **MVC architecture** (Model-View-Controller)
